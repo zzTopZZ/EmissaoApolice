@@ -36,6 +36,22 @@ namespace API.Controllers
             {
                 return BadRequest(res);
             }
+            else if (res.ErrorCode == ErrorCode.COULD_NOT_STORE_DATA)
+            {
+                return BadRequest(res);
+            }
+            else if (res.ErrorCode == ErrorCode.INVALID_PERSON_ID)
+            {
+                return BadRequest(res);
+            }
+            else if (res.ErrorCode == ErrorCode.MISSION_REQUIRED_INFORMATION)
+            {
+                return BadRequest(res);
+            }
+            else if (res.ErrorCode == ErrorCode.INVALID_TO_EMAIL)
+            {
+                return BadRequest(res);
+            }
 
             _logger.LogError("Erro ao criar cliente: {message}", res.Message);
             return BadRequest(500);

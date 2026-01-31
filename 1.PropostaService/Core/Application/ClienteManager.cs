@@ -2,6 +2,7 @@
 using Application.Cliente.Ports;
 using Application.Cliente.Request;
 using Application.Cliente.Response;
+using Domain.Exceptons;
 using Domain.Ports;
 
 namespace Application
@@ -19,7 +20,11 @@ namespace Application
             {
                 var cliente = ClienteDTO.MapToEntity(request.Data);
 
-                request.Data.Id = await _clienteRepository.Create(cliente);
+                await cliente.Save(_clienteRepository);
+
+                request.Data.Id = cliente.Id;
+                    
+                // request.Data.Id = await _clienteRepository.Create(cliente);
 
                 return new ClienteResponse
                 {
@@ -27,13 +32,31 @@ namespace Application
                     Success = true
                 };
             }
+            catch (InvalidPersonDocumentIdException e) 
+            {
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCode.INVALID_PERSON_ID,
+                    Success = false,
+                    Message = "O ID passado esta invalido"
+                };
+            }
+            catch (MissingRequiredInformation e)
+            {
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCode.MISSION_REQUIRED_INFORMATION,
+                    Success = false,
+                    Message = "Informações requeridas."
+                };
+            }
             catch (Exception)
             {
                 return new ClienteResponse
                 {
-                    ErrorCode = ErrorCode.COULD_NOT_STORE_DATA,
+                    ErrorCode = ErrorCode.MISSION_REQUIRED_INFORMATION,
                     Success = false,
-                    Message = "Erro ao criar cliente"
+                    Message = "Informações requeridas."
                 };
             }
 
