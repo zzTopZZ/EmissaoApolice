@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Apolice\DTO\" />
+    <Folder Include="Apolice\Ports\" />
+    <Folder Include="Apolice\Request\" />
+    <Folder Include="Apolice\Response\" />
+    <Folder Include="Proposta\DTOs\" />
+    <Folder Include="Proposta\Request\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+</Project>
