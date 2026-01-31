@@ -29,9 +29,18 @@ namespace Application.Cliente.DTO
             };
         }
 
-        public static object MapToEntity(Entities.Cliente cliente)
+
+        public static ClienteDTO MapFromEntity(Entities.Cliente cliente)
         {
-            throw new NotImplementedException();
+            return new ClienteDTO
+            {
+                Id = cliente.Id,
+                Nome = cliente.Nome,
+                Sobrenome = cliente.Sobrenome,
+                Email = cliente.Email,
+                //IdNumber = cliente.DocumentId.IdNumber,
+                //IdTypeCode = (int)cliente.DocumentId.DocumentType
+            };
         }
     }
 }

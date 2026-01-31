@@ -34,7 +34,7 @@ namespace API.Controllers
 
             if (res.ErrorCode == ErrorCode.NOT_FOUND)
             {
-                return BadRequest(res);
+                return NotFound(res);
             }
             else if (res.ErrorCode == ErrorCode.COULD_NOT_STORE_DATA)
             {
@@ -55,6 +55,17 @@ namespace API.Controllers
 
             _logger.LogError("Erro ao criar cliente: {message}", res.Message);
             return BadRequest(500);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ClienteDTO>> Get(int clienteId)
+        {
+            var res = await _clienteManager.GetCliente(clienteId);
+
+            if (res.Success)
+                return Created("", res.Data);
+
+            return NotFound(res);
         }
     }
 }

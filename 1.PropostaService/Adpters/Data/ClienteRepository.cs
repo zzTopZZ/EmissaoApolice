@@ -23,9 +23,10 @@ namespace Data
             return cliente.Id;
         }
 
-        public Task<Cliente> GetCliente(int Id)
+        public async Task<Cliente> GetCliente(int Id)
         {
-            throw new NotImplementedException();
+            var clientes = await _context.Clientes.ToListAsync();
+            return await _context.Clientes.Where(c => c.Id == Id).FirstOrDefaultAsync();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Entities
         public string Nome { get; set; } = string.Empty;
         public string Sobrenome { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public PersonId DocumentId { get; set; }
+        //public PersonId DocumentId { get; set; }
 
         private void ValidateState()
         {

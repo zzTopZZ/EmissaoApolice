@@ -2,6 +2,7 @@
 using Application.Cliente.Ports;
 using Application.Cliente.Request;
 using Application.Cliente.Response;
+using Domain.Entities;
 using Domain.Exceptons;
 using Domain.Ports;
 
@@ -60,6 +61,27 @@ namespace Application
                 };
             }
 
+        }
+
+        public async Task<ClienteResponse> GetCliente(int clienteId)
+        {
+            var cliente = await _clienteRepository.GetCliente(clienteId);
+
+            if (cliente == null)
+            {
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCode.NOT_FOUND,
+                    Success = false,
+                    Message = "Cliente não encontrado."
+                };
+            }
+
+            return new ClienteResponse
+            {
+                Data = ClienteDTO.MapFromEntity(cliente),
+                Success = true
+            };
         }
     }
 }
