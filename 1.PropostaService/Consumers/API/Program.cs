@@ -1,5 +1,6 @@
 using Application;
 using Application.Cliente.Ports;
+using Application.Proposta.Ports;
 using Data;
 using Domain.Ports;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IClienteManager, ClienteManager>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+
+builder.Services.AddScoped<IPropostaManager, PropostaManager>();
+builder.Services.AddScoped<IPropostaRepository, PropostaRepository>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EmissaoDbContext>(options =>

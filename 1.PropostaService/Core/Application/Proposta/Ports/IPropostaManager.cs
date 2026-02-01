@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Proposta.Request;
+using Application.Proposta.Response;
 
-namespace Application.Ports
+namespace Application.Proposta.Ports
 {
     public interface IPropostaManager
     {
-        //Task<PropostaResponse> CresteProposta(PropostaRequest request);
+        Task<PropostaResponse> CreateProposta(CreatePropostaRequest request);
+        Task<PropostaResponse> GetProposta(int clienteId);
+
     }
 }

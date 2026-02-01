@@ -1,24 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Proposta.DTO;
 
 namespace Application.Proposta.Response
 {
-    public class PropostaResponse
+    public class PropostaResponse : ApplResponse
     {
-        public enum ErrorCodes
-        {
-            PropostaNotFound = 1,
-            CouldNotStoreData = 2 //não foi possível armazenar dados
-        }
-
-        public abstract class Response
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public ErrorCodes? ErrorCode { get; set; }
-        }
+        public PropostaDTO Data;
     }
 }

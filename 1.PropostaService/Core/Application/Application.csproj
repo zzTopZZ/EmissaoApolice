@@ -11,8 +11,6 @@
     <Folder Include="Apolice\Ports\" />
     <Folder Include="Apolice\Request\" />
     <Folder Include="Apolice\Response\" />
-    <Folder Include="Proposta\DTOs\" />
-    <Folder Include="Proposta\Request\" />
   </ItemGroup>
 
   <ItemGroup>
