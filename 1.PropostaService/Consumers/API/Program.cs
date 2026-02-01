@@ -1,4 +1,5 @@
 using Application;
+using Application.Apolice.Ports;
 using Application.Cliente.Ports;
 using Application.Proposta.Ports;
 using Data;
@@ -15,6 +16,9 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
 builder.Services.AddScoped<IPropostaManager, PropostaManager>();
 builder.Services.AddScoped<IPropostaRepository, PropostaRepository>();
+
+builder.Services.AddScoped<IApoliceManager, ApoliceManager>();
+builder.Services.AddScoped<IApoliceRepository, ApoliceRepository>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EmissaoDbContext>(options =>

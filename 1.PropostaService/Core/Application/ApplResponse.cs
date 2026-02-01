@@ -13,7 +13,6 @@ namespace Application
         INVALID_PERSON_ID = 3,
         MISSION_REQUIRED_INFORMATION = 4,
         INVALID_TO_EMAIL = 5
-
     }
 
     public abstract class ApplResponse

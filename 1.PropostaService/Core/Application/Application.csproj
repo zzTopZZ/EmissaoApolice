@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Apolice\DTO\" />
-    <Folder Include="Apolice\Ports\" />
-    <Folder Include="Apolice\Request\" />
-    <Folder Include="Apolice\Response\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
