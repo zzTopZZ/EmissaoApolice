@@ -7,28 +7,30 @@ namespace Domain.Entities
 {
     public class Proposta
     {
-        public Proposta() { this.Status = Status.Criada; }
+        //public Proposta() { this.Situacao = Status.Criada; }
 
         public int Id { get; set; }
         public int ClienteId { get; set; }
-        public string NomeCliente { get; set; }
+        public string? NomeCliente { get; set; }
         public decimal ValorProposta { get; set; }
         public DateTime DataCriacao { get; set; }
         public decimal ValorSegurado { get; set; }
         public decimal ValorPremio { get; set; }
-        private Status Status { get; set; }
-        public Status SituacaoStatus { get { return this.Status; } }
+        public int Status { get; set; }
 
-        public void ChangeState(Action action)
-        {
-            this.Status = (this.Status, action) switch
-            {
-                (Status.Criada, Action.preenchida) => Status.Criada,
-                (Status.Criada, Action.finalizada) => Status.Aprovada,
-                (Status.Criada, Action.cancelada)  => Status.Rejeitada,
-                _ => this.Status
-            };
-        }
+        //private Situacao Situacao { get; set; }
+        //public SituacaoProposta SituacaoStatus { get { return this.Situacao; } }
+
+        //public void ChangeState(Action action)
+        //{
+        //    this.Situacao = (this.Situacao, action) switch
+        //    {
+        //        (Situacao.Criada, Action.preenchida) => Status.Criada,
+        //        (Situacao.Criada, Action.finalizada) => Status.Aprovada,
+        //        (Situacao.Criada, Action.cancelada) => Status.Rejeitada,
+        //        _ => this.Situacao
+        //    };
+        //}
 
         private void ValidateState()
         {

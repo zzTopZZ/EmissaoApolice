@@ -7,5 +7,7 @@ namespace Domain.Ports
         Task<Proposta> GetProposta(int Id);
 
         Task<int> Create(Proposta proposta);
+
+        Task Update(Proposta proposta);
     }
 }

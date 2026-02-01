@@ -2,6 +2,11 @@
 using Application.Apolice.DTO;
 using Application.Apolice.Ports;
 using Application.Apolice.Request;
+using Application.Booking.Dtos;
+using Application.Contratacao.Responses;
+using Application.Proposta.DTO;
+using Application.Proposta.Ports;
+using Application.Proposta.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -18,43 +23,43 @@ namespace API.Controllers
             _apoliceManager = apoliceManager;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<ApoliceDTO>> Post(ApoliceDTO apolice)
-        {
-            var request = new CreateApoliceRequest
-            {
-                Data = apolice
-            };
+        //[HttpPost]
+        //public async Task<ActionResult<ApoliceDTO>> Post(ApoliceDTO apolice)
+        //{
+        //    var request = new CreateApoliceRequest
+        //    {
+        //        Data = apolice
+        //    };
 
-            var res = await _apoliceManager.CreateApolice(request);
+        //    var res = await _apoliceManager.CreateApolice(request);
 
-            if (res.Success)
-                return Created("" , res.Data);
+        //    if (res.Success)
+        //        return Created("" , res.Data);
 
-            if (res.ErrorCode == ErrorCode.NOT_FOUND)
-            {
-                return NotFound(res);
-            }
-            else if (res.ErrorCode == ErrorCode.COULD_NOT_STORE_DATA)
-            {
-                return BadRequest(res);
-            }
-            else if (res.ErrorCode == ErrorCode.INVALID_PERSON_ID)
-            {
-                return BadRequest(res);
-            }
-            else if (res.ErrorCode == ErrorCode.MISSION_REQUIRED_INFORMATION)
-            {
-                return BadRequest(res);
-            }
-            else if (res.ErrorCode == ErrorCode.INVALID_TO_EMAIL)
-            {
-                return BadRequest(res);
-            }
+        //    if (res.ErrorCode == ErrorCode.NOT_FOUND)
+        //    {
+        //        return NotFound(res);
+        //    }
+        //    else if (res.ErrorCode == ErrorCode.COULD_NOT_STORE_DATA)
+        //    {
+        //        return BadRequest(res);
+        //    }
+        //    else if (res.ErrorCode == ErrorCode.INVALID_PERSON_ID)
+        //    {
+        //        return BadRequest(res);
+        //    }
+        //    else if (res.ErrorCode == ErrorCode.MISSION_REQUIRED_INFORMATION)
+        //    {
+        //        return BadRequest(res);
+        //    }
+        //    else if (res.ErrorCode == ErrorCode.INVALID_TO_EMAIL)
+        //    {
+        //        return BadRequest(res);
+        //    }
 
-            _logger.LogError("Erro ao criar cliente: {message}", res.Message);
-            return BadRequest(500);
-        }
+        //    _logger.LogError("Erro ao criar cliente: {message}", res.Message);
+        //    return BadRequest(500);
+        //}
 
         [HttpGet]
         public async Task<ActionResult<ApoliceDTO>> Get(int apoliceId)
@@ -65,6 +70,19 @@ namespace API.Controllers
                 return Created("", res.Data);
 
             return NotFound(res);
+        }
+
+        [HttpPost]
+        [Route("{propostaId}/Contratacao")]
+        public async Task<ActionResult<ContratacaoResponse>> Contratacao(
+            ContratacaoRequestDto contratacaoRequestDto, int propostaId)
+        {
+            contratacaoRequestDto.PropostaId = propostaId;
+            var res = await _apoliceManager.ContratacaoProposta(contratacaoRequestDto);
+
+            if (res.Success) return Ok(res.Data);
+
+            return BadRequest(res);
         }
     }
 }

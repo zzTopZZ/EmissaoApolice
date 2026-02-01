@@ -15,7 +15,8 @@ namespace Application.Proposta.DTO
         public DateTime DataCriacao { get; set; }
         public decimal ValorSegurado { get; set; }
         public decimal ValorPremio { get; set; }
-        private Status Status { get; set; }
+        public int Status { get; set; }
+        //private Status? Status { get; set; }
 
         public static Entities.Proposta MapToEntity(PropostaDTO dto)
         {
@@ -27,7 +28,8 @@ namespace Application.Proposta.DTO
                 ValorProposta = dto.ValorProposta,
                 DataCriacao = dto.DataCriacao,
                 ValorSegurado = dto.ValorSegurado,
-                ValorPremio = dto.ValorPremio//,
+                ValorPremio = dto.ValorPremio,
+                Status = dto.Status
             };
         }
 
@@ -42,7 +44,8 @@ namespace Application.Proposta.DTO
                 ValorProposta = proposta.ValorProposta,
                 DataCriacao = proposta.DataCriacao,
                 ValorSegurado = proposta.ValorSegurado,
-                ValorPremio = proposta.ValorPremio
+                ValorPremio = proposta.ValorPremio,
+                Status = proposta.Status
             };
         }
     }

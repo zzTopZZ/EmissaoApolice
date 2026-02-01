@@ -1,4 +1,5 @@
-﻿using Application.Proposta.Request;
+﻿using Application.Proposta.DTO;
+using Application.Proposta.Request;
 using Application.Proposta.Response;
 
 namespace Application.Proposta.Ports
@@ -7,6 +8,6 @@ namespace Application.Proposta.Ports
     {
         Task<PropostaResponse> CreateProposta(CreatePropostaRequest request);
         Task<PropostaResponse> GetProposta(int clienteId);
-
+        Task<PropostaResponse> UpdateProposta(int id, PropostaDTO propostaDto);
     }
 }

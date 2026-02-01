@@ -1,10 +1,15 @@
 ﻿using Application;
+using Application.Apolice.DTO;
+using Application.Apolice.Ports;
+using Application.Apolice.Response;
 using Application.Cliente.DTO;
 using Application.Cliente.Ports;
 using Application.Cliente.Request;
+using Application.Contratacao.Responses;
 using Application.Proposta.DTO;
 using Application.Proposta.Ports;
 using Application.Proposta.Request;
+using Application.Proposta.Response;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -91,5 +96,23 @@ namespace API.Controllers
 
             return NotFound(res);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<PropostaDTO>> Put(int id, PropostaDTO proposta)
+        {
+            // Opcional: Validar se o id da URL coincide com o do body
+            proposta.Id = id;
+
+            var res = await _propostaManager.UpdateProposta(id, proposta);
+
+            if (res.Success)
+                return Ok(res.Data);
+
+            if (res.ErrorCode == ErrorCode.NOT_FOUND)
+                return NotFound(res);
+
+            return BadRequest(res);
+        }
+
     }
 }

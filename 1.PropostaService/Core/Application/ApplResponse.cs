@@ -12,7 +12,12 @@ namespace Application
         COULD_NOT_STORE_DATA = 2,
         INVALID_PERSON_ID = 3,
         MISSION_REQUIRED_INFORMATION = 4,
-        INVALID_TO_EMAIL = 5
+        INVALID_TO_EMAIL = 5,
+
+
+        MANAUL_INVALID_CONTRATACAO_INTENTION = 500,
+        CONTRATACAO_INVALID_PAYMENT_INTENTION = 501,
+        CONTRATACAO_PROVIDER_NOT_IMPLEMENTED = 502
     }
 
     public abstract class ApplResponse

@@ -28,5 +28,11 @@ namespace Data
             var propostas = await _context.Propostas.ToListAsync();
             return await _context.Propostas.Where(c => c.Id == Id).FirstOrDefaultAsync();
         }
+
+        public async Task Update(Proposta proposta)
+        {
+            _context.Propostas.Update(proposta);
+            await _context.SaveChangesAsync();
+        }
     }
 }

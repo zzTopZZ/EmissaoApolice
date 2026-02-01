@@ -82,5 +82,22 @@ namespace Application
                 Success = true
             };
         }
+
+        public async Task<PropostaResponse> UpdateProposta(int id, PropostaDTO propostaDto)
+        {
+            var propostaExistente = await _propostaRepository.GetProposta(id);
+
+            if (propostaExistente == null)
+                return new PropostaResponse { Success = false, ErrorCode = ErrorCode.NOT_FOUND, Message = "Proposta não encontrada." };
+
+            // Mapeia os dados do DTO para a entidade existente
+            // Você pode criar um método MapToEntity que aceite o destino para manter a referência
+            //propostaExistente.Status = propostaDto.Status;
+            // ... outros campos ...
+
+            await _propostaRepository.Update(propostaExistente);
+
+            return new PropostaResponse { Data = propostaDto, Success = true };
+        }
     }
 }
