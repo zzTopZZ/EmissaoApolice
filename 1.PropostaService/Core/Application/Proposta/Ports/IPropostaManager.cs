@@ -9,5 +9,6 @@ namespace Application.Proposta.Ports
         Task<PropostaResponse> CreateProposta(CreatePropostaRequest request);
         Task<PropostaResponse> GetProposta(int clienteId);
         Task<PropostaResponse> UpdateProposta(int id, PropostaDTO propostaDto);
+        Task<List<PropostaDTO>> ListPropostas();
     }
 }

@@ -2,12 +2,13 @@
 using Domain.Exceptons;
 using Domain.Ports;
 using Action = Domain.Enums.Action;
+using MyStatus = Domain.Enums.Status;
 
 namespace Domain.Entities
 {
     public class Proposta
     {
-        //public Proposta() { this.Situacao = Status.Criada; }
+        public Proposta() { this.Status = (int)MyStatus.Criada; }
 
         public int Id { get; set; }
         public int ClienteId { get; set; }
@@ -16,7 +17,7 @@ namespace Domain.Entities
         public DateTime DataCriacao { get; set; }
         public decimal ValorSegurado { get; set; }
         public decimal ValorPremio { get; set; }
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         //private Situacao Situacao { get; set; }
         //public SituacaoProposta SituacaoStatus { get { return this.Situacao; } }

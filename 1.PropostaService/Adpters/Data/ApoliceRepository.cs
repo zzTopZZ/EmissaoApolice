@@ -28,5 +28,10 @@ namespace Data
             var apolices = await _context.Apolices.ToListAsync();
             return await _context.Apolices.Where(c => c.Id == Id).FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<Apolice>> ListAll()
+        {
+            return await _context.Apolices.AsNoTracking().ToListAsync();
+        }
     }
 }

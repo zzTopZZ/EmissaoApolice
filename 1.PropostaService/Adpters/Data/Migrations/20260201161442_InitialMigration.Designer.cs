@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(EmissaoDbContext))]
-    [Migration("20260131054013_InitialMigration")]
+    [Migration("20260201161442_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -46,8 +46,6 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PropostaId");
 
                     b.ToTable("Apolices");
                 });
@@ -92,8 +90,10 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NomeCliente")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ValorPremio")
                         .HasColumnType("decimal(18,2)");
@@ -106,31 +106,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
-
                     b.ToTable("Propostas");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Apolice", b =>
-                {
-                    b.HasOne("Domain.Entities.Proposta", "Proposta")
-                        .WithMany()
-                        .HasForeignKey("PropostaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Proposta");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Proposta", b =>
-                {
-                    b.HasOne("Domain.Entities.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

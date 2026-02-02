@@ -61,7 +61,7 @@ namespace API.Controllers
         //    return BadRequest(500);
         //}
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult<ApoliceDTO>> Get(int apoliceId)
         {
             var res = await _apoliceManager.GetApolice(apoliceId);
@@ -83,6 +83,19 @@ namespace API.Controllers
             if (res.Success) return Ok(res.Data);
 
             return BadRequest(res);
+        }
+
+        [HttpGet("list")]
+        public async Task<ActionResult<IEnumerable<ApoliceDTO>>> GetAll()
+        {
+            _logger.LogInformation("Buscando todas as apólices");
+
+            var apolices = await _apoliceManager.ListarApolices();
+
+            if (apolices == null || !apolices.Any())
+                return Ok(new List<ApoliceDTO>()); // Ok(new List<ApoliceDTO>()) // NoContent();
+
+            return Ok(apolices);
         }
     }
 }

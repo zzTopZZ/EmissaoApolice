@@ -32,7 +32,8 @@ namespace API.Controllers
 
         }
 
-        [HttpPost]
+
+        [HttpPost("post")]
         public async Task<ActionResult<PropostaDTO>> Post(PropostaDTO proposta)
         {
             var request = new CreatePropostaRequest
@@ -86,7 +87,7 @@ namespace API.Controllers
             return BadRequest(500);
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult<PropostaDTO>> Get(int propostaId)
         {
             var res = await _propostaManager.GetProposta(propostaId);
@@ -114,5 +115,17 @@ namespace API.Controllers
             return BadRequest(res);
         }
 
+        [HttpGet("list")] 
+        public async Task<ActionResult<List<PropostaDTO>>> List()
+        {
+            var lista = await _propostaManager.ListPropostas();
+
+            if (lista == null || !lista.Any())
+            {
+                return NoContent(); // Retorna 204 se a lista estiver vazia
+            }
+
+            return Ok(lista);
+        }
     }
 }

@@ -4,6 +4,7 @@ using Application.Proposta.Ports;
 using Application.Proposta.Request;
 using Application.Proposta.Response;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Exceptons;
 using Domain.Ports;
 
@@ -32,7 +33,7 @@ namespace Application
                     Success = true
                 };
             }
-            catch (InvalidPersonDocumentIdException e) 
+            catch (InvalidPersonDocumentIdException) 
             {
                 return new PropostaResponse
                 {
@@ -41,7 +42,7 @@ namespace Application
                     Message = "O ID passado esta invalido"
                 };
             }
-            catch (MissingRequiredInformation e)
+            catch (MissingRequiredInformation)
             {
                 return new PropostaResponse
                 {
@@ -90,14 +91,23 @@ namespace Application
             if (propostaExistente == null)
                 return new PropostaResponse { Success = false, ErrorCode = ErrorCode.NOT_FOUND, Message = "Proposta não encontrada." };
 
-            // Mapeia os dados do DTO para a entidade existente
-            // Você pode criar um método MapToEntity que aceite o destino para manter a referência
-            //propostaExistente.Status = propostaDto.Status;
-            // ... outros campos ...
+            if (propostaDto.Status == (int)Status.Emitida ||
+                propostaDto.Status == (int)Status.Aprovada ||
+                propostaDto.Status == (int)Status.Rejeitada)
+                return new PropostaResponse { Success = false, ErrorCode = ErrorCode.PROPOSTA_NAO_PODE_SER_ALTERADA, Message = "Proposta não pode ser alterada." };
+
 
             await _propostaRepository.Update(propostaExistente);
 
             return new PropostaResponse { Data = propostaDto, Success = true };
         }
+
+        public async Task<List<PropostaDTO>> ListPropostas()
+        {
+            var propostas = await _propostaRepository.ListPropostas();
+
+            return propostas.Select(p => PropostaDTO.MapFromEntity(p)).ToList();
+        }
+
     }
 }

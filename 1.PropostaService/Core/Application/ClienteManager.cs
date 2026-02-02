@@ -33,7 +33,7 @@ namespace Application
                     Success = true
                 };
             }
-            catch (InvalidPersonDocumentIdException e) 
+            catch (InvalidPersonDocumentIdException) 
             {
                 return new ClienteResponse
                 {
@@ -42,7 +42,7 @@ namespace Application
                     Message = "O ID passado esta invalido"
                 };
             }
-            catch (MissingRequiredInformation e)
+            catch (MissingRequiredInformation )
             {
                 return new ClienteResponse
                 {

@@ -34,5 +34,11 @@ namespace Data
             _context.Propostas.Update(proposta);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Proposta>> ListPropostas()
+        {
+            // Usamos o ToListAsync para buscar todos os registros
+            return await _context.Propostas.ToListAsync();
+        }
     }
 }

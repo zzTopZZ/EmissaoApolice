@@ -9,5 +9,7 @@ namespace Domain.Ports
         Task<int> Create(Proposta proposta);
 
         Task Update(Proposta proposta);
+
+        Task<List<Proposta>> ListPropostas();
     }
 }

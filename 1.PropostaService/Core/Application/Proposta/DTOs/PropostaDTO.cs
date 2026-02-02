@@ -15,7 +15,7 @@ namespace Application.Proposta.DTO
         public DateTime DataCriacao { get; set; }
         public decimal ValorSegurado { get; set; }
         public decimal ValorPremio { get; set; }
-        public int Status { get; set; }
+        public int? Status { get; set; }
         //private Status? Status { get; set; }
 
         public static Entities.Proposta MapToEntity(PropostaDTO dto)

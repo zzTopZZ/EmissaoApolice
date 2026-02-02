@@ -7,5 +7,8 @@ namespace Domain.Ports
         Task<Apolice> GetApolice(int Id);
 
         Task<int> Create(Apolice apolice);
+
+        Task<IEnumerable<Apolice>> ListAll();
+
     }
 }

@@ -19,7 +19,7 @@ namespace API.Controllers
             _clienteManager = clienteManager;
         }
 
-        [HttpPost]
+        [HttpPost("post")]
         public async Task<ActionResult<ClienteDTO>> Post(ClienteDTO cliente)
         {
             var request = new CreateClienteRequest
@@ -57,7 +57,7 @@ namespace API.Controllers
             return BadRequest(500);
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<ActionResult<ClienteDTO>> Get(int clienteId)
         {
             var res = await _clienteManager.GetCliente(clienteId);
