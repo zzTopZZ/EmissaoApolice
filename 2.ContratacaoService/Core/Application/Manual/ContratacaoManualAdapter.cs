@@ -34,7 +34,7 @@ namespace Contratacao.Application.Manual
                 {
                     Data = dto,
                     Success = true,
-                    Message = "Payment successfully processed"
+                    Message = "Contratacao successfully processed"
                 };
 
                 return Task.FromResult(response);
@@ -44,8 +44,8 @@ namespace Contratacao.Application.Manual
                 var resp = new ContratacaoResponse()
                 {
                     Success = false,
-                    ErrorCode = ErrorCode.CONTRATACAO_INVALID_PAYMENT_INTENTION,
-                    Message = "The selected payment intention is invalid"
+                    ErrorCode = ErrorCode.CONTRATACAO_INVALID_CONTRATACAO_INTENTION,
+                    Message = "The selected contratacao intention is invalid"
                 };
                 return Task.FromResult(resp);
             }

@@ -91,11 +91,12 @@ namespace Application
             if (propostaExistente == null)
                 return new PropostaResponse { Success = false, ErrorCode = ErrorCode.NOT_FOUND, Message = "Proposta não encontrada." };
 
-            if (propostaDto.Status == (int)Status.Emitida ||
-                propostaDto.Status == (int)Status.Aprovada ||
-                propostaDto.Status == (int)Status.Rejeitada)
+            if (propostaExistente.Status == (int)Status.Emitida ||
+                propostaExistente.Status == (int)Status.Aprovada ||
+                propostaExistente.Status == (int)Status.Rejeitada)
                 return new PropostaResponse { Success = false, ErrorCode = ErrorCode.PROPOSTA_NAO_PODE_SER_ALTERADA, Message = "Proposta não pode ser alterada." };
 
+            propostaExistente.Status = propostaDto.Status;
 
             await _propostaRepository.Update(propostaExistente);
 

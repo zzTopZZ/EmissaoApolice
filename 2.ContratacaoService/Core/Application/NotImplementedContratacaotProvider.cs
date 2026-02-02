@@ -12,7 +12,7 @@ namespace Payments.Application
             { 
                 Success = false,
                 ErrorCode = ErrorCode.CONTRATACAO_PROVIDER_NOT_IMPLEMENTED,
-                Message = "The selected payment provider is not available at the moment"
+                Message = "O fornecedor de contratação selecionado não está disponível no momento"
             };
 
             return Task.FromResult(contratcaoResponse);

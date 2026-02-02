@@ -21,11 +21,11 @@ namespace Application
         private IPropostaRepository _propostaRepository;
         private readonly IContratacaoProcessorFactory _contratacaoProcessorFactory;
         public ApoliceManager(IApoliceRepository apoliceRepository,
-                             IContratacaoProcessorFactory paymentProcessorFactory,
+                             IContratacaoProcessorFactory contratacaoProcessorFactory,
                              IPropostaRepository propostaRepository) 
         {
             _apoliceRepository = apoliceRepository;
-            _contratacaoProcessorFactory = paymentProcessorFactory;
+            _contratacaoProcessorFactory = contratacaoProcessorFactory;
             _propostaRepository = propostaRepository;
         }
         public async Task<ApoliceResponse> CreateApolice(CreateApoliceRequest request)
@@ -164,7 +164,7 @@ namespace Application
                 var dto = new ContratacaoStateDto
                 {
                     DataCriacao = DateTime.UtcNow,
-                    Message = $"Successfully paid {apoliceId}",
+                    Message = $"Successfully propostaId {apoliceId}",
                     ContratacaoId = apoliceId.ToString(),
                     Status = Status.Sucesso
                 };
