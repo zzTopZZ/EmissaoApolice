@@ -1,20 +1,21 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# IntroduÇâo
+O projeto consiste em cadastrar um cliente, com o cliente cadastrado criar uma proposta, apos analise, e a proposta for aprovada, gerar
+uma apolice, senão estiver nesta situação gerara uma mensagem.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+# Primeiros Passos
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+1. Fazer a alteração do "appsettings.json" do Projeto API, colocando o endereço do seu banco de dados SQLServer
+      "ConnectionStrings": {
+                "DefaultConnection": "Colocar o seu endereço de Banco de dados"
+        },
+2. Fazer os Migrations
+3. Executar o Projeto API
+4. Cadatrar um Cliente
+5. Cadastrar uma proposta (Status => Criada = 5)
+6. Alterar uma proposta para Aprovada (Status => Aprovada = 2)
+7. Processar a proposta passando o numero da proposta (propostaId = 1)
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+# Compilação e Teste
+Os testes foram usando NUnit com Moq.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Contribuição
